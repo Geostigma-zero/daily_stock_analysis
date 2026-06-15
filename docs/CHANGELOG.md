@@ -27,6 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 <!-- 新条目格式：- [类型] 描述（类型取值：新功能/改进/修复/文档/测试/chore）-->
 <!-- 每条独立一行追加到本段末尾，无需分类标题，合并时冲突最小 -->
 - [新功能] 新增 Codex Native A 股研究入口，支持本地日线/共享行情库读取、基础指标、大盘复盘和小牛研报纪要情报报告，并补充离线测试与使用文档。
+- [改进] Codex Native 报告将假设分区展示口径调整为“研究假设”，并兼容旧 context-json 的 `trading_hypothesis` 输入。
 - [改进] #1386 P6 复用市场阶段与 AnalysisContextPack 公开摘要联动告警、持仓手动分析、历史、回测和通知展示，不新增数据库迁移。
 
 - [新功能] 飞书通知新增应用机器人（App Bot）模式，支持通过 FEISHU_APP_ID / FEISHU_APP_SECRET / FEISHU_CHAT_ID 配置，无需额外创建自定义机器人。

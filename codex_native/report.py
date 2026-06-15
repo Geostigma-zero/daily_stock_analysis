@@ -31,7 +31,7 @@ SECTION_TITLES = {
     EvidenceKind.VERIFIED_FACT: "已验证事实",
     EvidenceKind.MARKET_RUMOR: "市场传闻",
     EvidenceKind.LOGICAL_INFERENCE: "逻辑推演",
-    EvidenceKind.TRADING_HYPOTHESIS: "交易假设",
+    EvidenceKind.RESEARCH_HYPOTHESIS: "研究假设",
 }
 
 LOCAL_PATH_PATTERN = re.compile(r"[A-Za-z]:[\\/][^\s；，,|)]+")
@@ -120,7 +120,7 @@ def render_markdown(report: ResearchReport, appendix_name: str | None = None) ->
         EvidenceKind.VERIFIED_FACT,
         EvidenceKind.MARKET_RUMOR,
         EvidenceKind.LOGICAL_INFERENCE,
-        EvidenceKind.TRADING_HYPOTHESIS,
+        EvidenceKind.RESEARCH_HYPOTHESIS,
     ):
         lines.extend([f"## {SECTION_TITLES[kind]}", ""])
         items = grouped.get(kind, [])
@@ -181,8 +181,14 @@ def render_research_appendix_markdown(report: ResearchReport) -> str:
 def _group_evidence(evidence: list[EvidenceItem]) -> dict[EvidenceKind, list[EvidenceItem]]:
     grouped: dict[EvidenceKind, list[EvidenceItem]] = {}
     for item in evidence:
-        grouped.setdefault(item.kind, []).append(item)
+        grouped.setdefault(_display_kind(item.kind), []).append(item)
     return grouped
+
+
+def _display_kind(kind: EvidenceKind) -> EvidenceKind:
+    if kind == EvidenceKind.TRADING_HYPOTHESIS:
+        return EvidenceKind.RESEARCH_HYPOTHESIS
+    return kind
 
 
 def _is_private_intelligence_evidence(item: EvidenceItem) -> bool:

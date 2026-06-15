@@ -332,8 +332,10 @@ def _intelligence_kind(item: IntelligenceContextItem) -> EvidenceKind:
         return EvidenceKind.VERIFIED_FACT
     if item.suggested_section == EvidenceKind.LOGICAL_INFERENCE.value:
         return EvidenceKind.LOGICAL_INFERENCE
+    if item.suggested_section == EvidenceKind.RESEARCH_HYPOTHESIS.value:
+        return EvidenceKind.RESEARCH_HYPOTHESIS
     if item.suggested_section == EvidenceKind.TRADING_HYPOTHESIS.value:
-        return EvidenceKind.TRADING_HYPOTHESIS
+        return EvidenceKind.RESEARCH_HYPOTHESIS
     return EvidenceKind.MARKET_RUMOR
 
 

@@ -216,6 +216,7 @@ def test_evidence_classification_and_report_safety(tmp_path: Path) -> None:
 
 def test_context_json_parser_keeps_framework_blocks() -> None:
     from codex_native.context import parse_context
+    from codex_native.evidence import EvidenceKind
 
     context = parse_context(
         {
@@ -243,6 +244,19 @@ def test_context_json_parser_keeps_framework_blocks() -> None:
     assert context.risk_items[0].category == "监管"
     assert "数据块 news 状态 partial" in context.quality_limitations()[0]
     assert context.observations == ["观察公告回复与量能是否同步改善。"]
+
+    legacy_context = parse_context(
+        {
+            "intelligence_items": [
+                {
+                    "title": "旧口径研究线索",
+                    "summary": "旧 context-json 仍可能传入 trading_hypothesis。",
+                    "suggested_section": "trading_hypothesis",
+                }
+            ]
+        }
+    )
+    assert legacy_context.evidence[0].kind == EvidenceKind.RESEARCH_HYPOTHESIS
 
 
 def test_cli_generates_markdown_report_with_context_json(tmp_path: Path) -> None:

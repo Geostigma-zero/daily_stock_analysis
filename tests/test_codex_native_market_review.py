@@ -146,7 +146,7 @@ def test_market_review_cli_generates_markdown_with_context_json(tmp_path: Path) 
     assert "## 已验证事实" in content
     assert "## 市场传闻" in content
     assert "## 逻辑推演" in content
-    assert "## 交易假设" in content
+    assert "## 研究假设" in content
     assert "行业政策（medium）" in content
     assert "观察科创50与创业板指是否继续同步放量" in content
     assert "数据块 social 状态 stale" in content

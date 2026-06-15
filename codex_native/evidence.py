@@ -10,6 +10,8 @@ class EvidenceKind(str, Enum):
     VERIFIED_FACT = "verified_fact"
     MARKET_RUMOR = "market_rumor"
     LOGICAL_INFERENCE = "logical_inference"
+    RESEARCH_HYPOTHESIS = "research_hypothesis"
+    # Legacy context-json value kept for backward compatibility.
     TRADING_HYPOTHESIS = "trading_hypothesis"
 
 
